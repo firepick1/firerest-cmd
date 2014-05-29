@@ -1,2 +1,8 @@
 #! /bin/bash
+if [ ! -e target/firerest*jar-with-dependencies.jar ]; then
+  mkdir -p target
+  pushd target
+  wget https://oss.sonatype.org/content/repositories/releases/org/firepick/firerest-cmd/1.0/firerest-cmd-1.0-jar-with-dependencies.jar
+  popd
+fi
 java -jar target/firerest*jar-with-dependencies.jar $@
