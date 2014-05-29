@@ -5,8 +5,7 @@ FireREST command line interface
 
 ### Maven
 
-<code>
-   &lt;dependency&gt;
+<code>&lt;dependency&gt;
       &lt;groupId&gt;org.firepick&lt;/groupId&gt;
       &lt;artifactId&gt;firerest-cmd&lt;/artifactId&gt;
       &lt;packaging&gt;jar&lt;/packaging&gt;
