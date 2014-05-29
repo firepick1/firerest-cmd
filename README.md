@@ -1,16 +1,16 @@
-firerest-client
+firerest-cmd
 ===============
 
-Java client for FireREST
+FireREST command line interface
 
 ### Maven
 <pre>
 <dependency>
   <groupId>org.firepick</groupId>
-  <artifactId>firerest-client</artifactId>
+  <artifactId>firerest-cmd</artifactId>
   <packaging>jar</packaging>
-  <version>0.7.1</version>
+  <version>0.6.2</version>
 </dependency>
 </pre>
 
-* https://oss.sonatype.org/content/groups/public/org/firepick/firerest-client/
+* https://oss.sonatype.org/content/groups/public/org/firepick/firerest-cmd/
