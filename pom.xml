@@ -8,10 +8,10 @@
   <groupId>org.firepick</groupId>
   <artifactId>firerest-cmd</artifactId>
   <packaging>jar</packaging>
-  <version>1.0</version>
-  <name>firerest-client</name>
+  <version>1.0-SNAPSHOT</version>
+  <name>firerest-cmd command line utility</name>
   <url>http://github.com/firepick1/FireREST</url>
-  <description>Java client for FireREST web services</description>
+  <description>Java command line utility for FireREST web services</description>
   <licenses>
     <license>
       <name>The MIT License (MIT)</name>
@@ -21,8 +21,8 @@
   </licenses>
   <scm>
     <url>https://github.com/firepick1/FireREST</url>
-    <connection>scm:git:git://github.com/firepick1/firerest-client.git</connection>
-    <developerConnection>scm:git:git@github.com:firepick1/firerest-client.git</developerConnection>
+    <connection>scm:git:git://github.com/firepick1/firerest-cmd.git</connection>
+    <developerConnection>scm:git:git@github.com:firepick1/firerest-cmd.git</developerConnection>
     <tag>firerest-cmd-1.0</tag>
   </scm>
   <developers>
