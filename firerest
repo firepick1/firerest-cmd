@@ -1,7 +1,8 @@
 #! /bin/bash
 if [ ! -e target/firerest*jar-with-dependencies.jar ]; then
-  JAR=firerest-cmd-1.0-jar-with-dependencies.jar
-  URL=https://oss.sonatype.org/content/repositories/releases/org/firepick/firerest-cmd/1.0/$JAR
+  VER=1.0.3
+  JAR=firerest-cmd-$VER-jar-with-dependencies.jar
+  URL=https://oss.sonatype.org/content/repositories/releases/org/firepick/firerest-cmd/$VER/$JAR
   mkdir -p target
   pushd target
   if [ `type -p curl` ]; then
