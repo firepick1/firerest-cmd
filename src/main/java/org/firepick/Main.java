@@ -31,14 +31,17 @@ public class Main {
     sb.append("  -s --services\n");
     sb.append("\tList FireREST services on local area network assuming 24-bit subnet mask\n");
     sb.append("\n");
+    sb.append("  -t --timeout\n");
+    sb.append("\tChange timeout from 1500ms to given number of milliseconds.\n");
+    sb.append("\n");
     sb.append("See Also:\n");
     sb.append("\thttp://github.com/firepick1/firerest-cmd\n");
     System.out.println(sb);
   }
 
-  private static int listServices() {
-    System.out.println("Scanning local network for FireREST services...");
-    Collection<ServiceResolver> resolvers = ServiceResolver.discover(null, 255, 500);
+  private static int listServices(int msTimeout) {
+    System.out.println("Scanning local network for FireREST services (@" + msTimeout + "ms)...");
+    Collection<ServiceResolver> resolvers = ServiceResolver.discover(null, 255, msTimeout);
     int count = 0;
     for (ServiceResolver resolver: resolvers) {
       count++;
@@ -54,10 +57,10 @@ public class Main {
     return 1;
   }
 
-  private static int listHosts() {
-    System.out.println("Scanning local network...");
+  private static int listHosts(int msTimeout) {
+    System.out.println("Scanning local network (@" + msTimeout + "ms)...");
     int count = 0;
-    for (InetAddress host: IPv4Scanner.scanRange(null, 255, 500)) {
+    for (InetAddress host: IPv4Scanner.scanRange(null, 255, msTimeout)) {
       count++;
       System.out.println("HOST " + count + ": " + host.getHostAddress() + " " + host.getCanonicalHostName());
     }
@@ -65,20 +68,24 @@ public class Main {
   }
 
   public static void main(String [] args) {
-    int count = 0;
+    int argsProcessed = 0;
+    int msTimeout = 1500;
 
-    for (String arg: args) {
-      if (arg.equals("-s") || arg.equals("--services")) {
-	count += listServices();
+    for (int i = 0; i < args.length; i++) {
+      String arg = args[i];
+      if (arg.equals("-t") || arg.equals("--timeout")) {
+	msTimeout = Integer.parseInt(args[++i]);
+	argsProcessed += 2;
+      } else if (arg.equals("-s") || arg.equals("--services")) {
+	argsProcessed += listServices(msTimeout);
       } else if (arg.equals("-h") || arg.equals("--hosts")) {
-	count += listHosts();
-      } else if (arg.equals("--help")) {
+	argsProcessed += listHosts(msTimeout); } else if (arg.equals("--help")) {
         // no action
       } else {
 	break;
       }
     }
-    if (args.length == 0 || count != args.length) {
+    if (args.length == 0 || argsProcessed != args.length) {
       help();
     }
   }
