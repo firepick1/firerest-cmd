@@ -10,5 +10,10 @@ FireREST command line interface
 >`  <packaging>jar</packaging>`<br>
 >`  <version>0.6.2</version>`<br>
 >`</dependency>`<br>
+`
+a
+  b
+    c
+    `
 
 * https://oss.sonatype.org/content/groups/public/org/firepick/firerest-cmd/
