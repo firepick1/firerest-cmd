@@ -1,16 +1,10 @@
 firerest-cmd
 ===============
 
-FireREST command line interface
+FireREST command line utility for discovering hosts and FireREST services on local area network.
 
-### Maven
+### Usage
 
-<pre><code>  &lt;dependency&gt;
-    &lt;groupId&gt;org.firepick&lt;/groupId&gt;
-    &lt;artifactId&gt;firerest-cmd&lt;/artifactId&gt;
-    &lt;packaging&gt;jar&lt;/packaging&gt;
-    &lt;version&gt;0.6.2&lt;/version&gt;
-  &lt;/dependency&gt;
-</code></pre>
-
-* https://oss.sonatype.org/content/groups/public/org/firepick/firerest-cmd/
+1. `git clone git://github.com/firepick1/firerest-cmd`
+2. `cd firerest-cmd`
+3. `./firerest --help`
