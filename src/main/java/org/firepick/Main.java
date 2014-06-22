@@ -25,6 +25,9 @@ public class Main {
     sb.append("  --help\n");
     sb.append("\tPrint this text\n");
     sb.append("\n");
+    sb.append("  -l --localhost\n");
+    sb.append("\tPrint local host addresses\n");
+    sb.append("\n");
     sb.append("  -h --hosts\n");
     sb.append("\tList hosts on local area network assuming 24-bit subnet mask\n");
     sb.append("\n");
@@ -67,6 +70,19 @@ public class Main {
     return 1;
   }
 
+  private static int listLocal() {
+    int count = 0;
+    try {
+      for (InetAddress host: IPv4Scanner.localNetworkAddresses()) {
+	count++;
+	System.out.println("LOCALHOST " + count + ": " + host.getHostAddress() + " " + host.getCanonicalHostName());
+      }
+    } catch (Exception e) {
+      e.printStackTrace(System.out);
+    }
+    return 1;
+  }
+
   public static void main(String [] args) {
     int argsProcessed = 0;
     int msTimeout = 1500;
@@ -76,6 +92,8 @@ public class Main {
       if (arg.equals("-t") || arg.equals("--timeout")) {
 	msTimeout = Integer.parseInt(args[++i]);
 	argsProcessed += 2;
+      } else if (arg.equals("-l") || arg.equals("--localhost")) {
+	argsProcessed += listLocal();
       } else if (arg.equals("-s") || arg.equals("--services")) {
 	argsProcessed += listServices(msTimeout);
       } else if (arg.equals("-h") || arg.equals("--hosts")) {
