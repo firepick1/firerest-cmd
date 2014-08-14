@@ -62,10 +62,10 @@ public class Main {
 
   private static int listHosts(int msTimeout) {
     System.out.println("Scanning local network (@" + msTimeout + "ms)...");
-    int count = 0;
+    int n = 0;
     for (InetAddress host: IPv4Scanner.scanRange(null, 255, msTimeout)) {
-      count++;
-      System.out.println("HOST " + count + ": " + host.getHostAddress() + " " + host.getCanonicalHostName());
+      n++;
+      System.out.println("HOST "+n+": " + host.getHostAddress() + " " + host.getCanonicalHostName());
     }
     return 1;
   }
@@ -73,7 +73,7 @@ public class Main {
   private static int listLocal() {
     int count = 0;
     try {
-      for (InetAddress host: IPv4Scanner.localNetworkAddresses()) {
+      for (InetAddress host: IPv4Scanner.localhostNetworkAddresses()) {
 	count++;
 	System.out.println("LOCALHOST " + count + ": " + host.getHostAddress() + " " + host.getCanonicalHostName());
       }
