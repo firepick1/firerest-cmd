@@ -30,6 +30,8 @@ public class Main {
     sb.append("\n");
     sb.append("  -h --hosts\n");
     sb.append("\tList hosts on local area network assuming 24-bit subnet mask\n");
+    sb.append("  -H --HOSTS\n");
+    sb.append("\tList hosts continuously on local area network assuming 24-bit subnet mask\n");
     sb.append("\n");
     sb.append("  -s --services\n");
     sb.append("\tList FireREST services on local area network assuming 24-bit subnet mask\n");
@@ -60,12 +62,30 @@ public class Main {
     return 1;
   }
 
-  private static int listHosts(int msTimeout) {
+  private static int listHosts(int msTimeout, boolean continuous) {
     System.out.println("Scanning local network (@" + msTimeout + "ms)...");
+    HashSet<InetAddress> hosts = new HashSet<InetAddress>();
     int n = 0;
     for (InetAddress host: IPv4Scanner.scanRange(null, 255, msTimeout)) {
       n++;
-      System.out.println("HOST "+n+": " + host.getHostAddress() + " " + host.getCanonicalHostName());
+      hosts.add(host);
+      System.out.println("  " + host.getHostAddress() + " " + host.getCanonicalHostName());
+    }
+    while (continuous) {
+      System.out.println();
+      HashSet<InetAddress> newHosts = new HashSet<InetAddress>();
+      for (InetAddress host: IPv4Scanner.scanRange(null, 255, msTimeout)) {
+        if (hosts.contains(host)) {
+	  hosts.remove(host);
+	} else {
+	  System.out.println("+ " + host.getHostAddress()+" "+host.getCanonicalHostName());
+	}
+	newHosts.add(host);
+      }
+      for (InetAddress host: hosts) {
+	System.out.println("- "+host.getHostAddress()+" "+host.getCanonicalHostName());
+      }
+      hosts = newHosts;
     }
     return 1;
   }
@@ -97,7 +117,10 @@ public class Main {
       } else if (arg.equals("-s") || arg.equals("--services")) {
 	argsProcessed += listServices(msTimeout);
       } else if (arg.equals("-h") || arg.equals("--hosts")) {
-	argsProcessed += listHosts(msTimeout); } else if (arg.equals("--help")) {
+	argsProcessed += listHosts(msTimeout, false); 
+      } else if (arg.equals("-H") || arg.equals("--HOSTS")) {
+	argsProcessed += listHosts(msTimeout, true); 
+      } else if (arg.equals("--help")) {
         // no action
       } else {
 	break;
