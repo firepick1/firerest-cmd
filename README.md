@@ -16,3 +16,8 @@ then you will be able to use _bash_ as follows:
 1. `git clone git://github.com/firepick1/firerest-cmd`
 2. `cd firerest-cmd`
 3. `bash ./firerest --help`
+
+### Build
+
+1. 	sudo apt-get install -y maven`
+2. `mvn clean install`
