@@ -18,6 +18,11 @@ then you will be able to use _bash_ as follows:
 3. `bash ./firerest --help`
 
 ### Build
+Prerequisites:
 
 1. `sudo apt-get install -y maven`
-2. `mvn clean install`
+
+Standard Java build:
+
+1. `mvn clean install`
+1. `./firerest --help`
