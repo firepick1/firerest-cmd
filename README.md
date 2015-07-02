@@ -19,5 +19,5 @@ then you will be able to use _bash_ as follows:
 
 ### Build
 
-1. 	sudo apt-get install -y maven`
+1. `sudo apt-get install -y maven`
 2. `mvn clean install`
